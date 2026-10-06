@@ -1,0 +1,64 @@
+; LGMouVd.inf
+[Version]
+Signature="$Windows NT$"
+Class=Mouse
+ClassGuid={4D36E96F-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=
+CatalogFile=LGMouVd.cat
+PnpLockdown=1
+
+[Manufacturer]
+%Provider%=Standard,NTamd64
+
+[Standard.NTamd64]
+%DeviceName%=LGMouVd_Inst,HID\LGInput&Col01
+
+[LGMouVd_Inst.NT]
+Include=msmouse.inf
+Needs=HID_Mouse_Inst.NT
+CopyFiles=LGMouVd_CopyFiles
+
+[LGMouVd_Inst.NT.HW]
+Include=msmouse.inf
+Needs=HID_Mouse_Inst.NT.HW
+AddReg=LGMouVd_Inst.HW.AddReg
+
+[LGMouVd_Inst.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"LGMouVd"
+
+[LGMouVd_Inst.NT.Services]
+Include=msmouse.inf
+Needs=HID_Mouse_Inst.NT.Services
+AddService=LGMouVd,,LGMouVd_Service_Inst
+
+[LGMouVd_Service_Inst]
+DisplayName=%ServiceName%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\LGMouVd.sys
+
+[LGMouVd_Inst.NT.Wdf]
+KmdfService=LGMouVd,LGMouVd_wdfsect
+
+[LGMouVd_wdfsect]
+KmdfLibraryVersion=1.15
+
+[DestinationDirs]
+LGMouVd_CopyFiles=12
+
+[LGMouVd_CopyFiles]
+LGMouVd.sys
+
+[SourceDisksNames]
+1=%DiskName%
+
+[SourceDisksFiles]
+LGMouVd.sys=1
+
+[Strings]
+Provider="Looking Glass (experiment)"
+DeviceName="Looking Glass virtual-desktop mouse filter"
+ServiceName="LGMouVd"
+DiskName="LGMouVd Installation Disk"
