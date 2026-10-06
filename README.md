@@ -21,8 +21,8 @@ configuration.
 ## Requirements
 
 * The Looking Glass IDD with the multi-connector input patches:
-  https://github.com/gnif/LookingGlass/pull/1342 and the input series that
-  follows it.
+  https://github.com/gnif/LookingGlass/pull/1343 (which builds on
+  https://github.com/gnif/LookingGlass/pull/1342).
 * Windows 10 or 11, x64.
 
 ## Building
